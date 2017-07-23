@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjtu.examsys.dao.UserDao">
+    <resultMap id="BaseResultMap" type="com.bjtu.examsys.domain.User">
+        <result column="userId" property="userId"/>
+        <result column="password" property="password"/>
+        <result column="occupation" property="occupation"/>
+        <result column="gender" property="gender"/>
+    </resultMap>
+
+    <parameterMap id="User" type="com.bjtu.examsys.domain.User"/>
+
+    <!--<sql id="Base_Column_List">
+        userId, password , occupation , gender
+    </sql>-->
+
+    <select id="findUserByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT *
+        FROM user
+        WHERE userId = #{userId}
+    </select>
+
+    <insert id="insertUser" parameterType="com.bjtu.examsys.domain.User">
+        INSERT INTO
+        user
+        (userId, password, occupation, gender)
+        VALUES
+        ('${user.userId}', '${user.password}', '${user.occupation}', '${user.gender}')
+    </insert>
+</mapper>
