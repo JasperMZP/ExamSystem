@@ -2,6 +2,7 @@ package com.bjtu.examsys.controller;
 
 import com.bjtu.examsys.aspect.HttpAspect;
 import com.bjtu.examsys.domain.Result;
+import com.bjtu.examsys.domain.ReturnUser;
 import com.bjtu.examsys.domain.User;
 import com.bjtu.examsys.service.UserService;
 import org.slf4j.Logger;
@@ -50,7 +51,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/examsys/user/login")
-    public Result<User> userLogin(@RequestParam("userId") String userId, @RequestParam("password") String password) throws Exception {
+    public Result<ReturnUser> userLogin(@RequestParam("userId") String userId, @RequestParam("password") String password) throws Exception {
         return userService.userLogin(userId, password);
     }
 
