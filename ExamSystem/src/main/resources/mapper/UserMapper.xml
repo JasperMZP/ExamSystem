@@ -31,7 +31,6 @@
     <update id="updateUser" parameterType="com.bjtu.examsys.domain.User">
         UPDATE user
         <set>
-            password = #{user.password},
             occupation = #{user.occupation},
             gender = #{user.gender},
 

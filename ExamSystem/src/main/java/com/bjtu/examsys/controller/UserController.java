@@ -56,9 +56,9 @@ public class UserController {
     }
 
     @PutMapping(value = "/examsys/user/{userId}")
-    public Result userUpdate(@PathVariable("userId") String userId,@RequestParam("password")String password,@RequestParam("occupation")
+    public Result userUpdate(@PathVariable("userId") String userId,@RequestParam("occupation")
             String occupation,@RequestParam("gender")String gender)throws Exception{
         logger.info(userId);
-        return userService.userUpdate(userId,password,occupation,gender);
+        return userService.userUpdate(userId,occupation,gender);
     }
 }

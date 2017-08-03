@@ -14,5 +14,5 @@ public interface UserService {
 
     Result<ReturnUser> userLogin(String userId, String password) throws Exception;
 
-    Result userUpdate(String userId,String password,String occupation,String gender) throws Exception;
+    Result userUpdate(String userId,String occupation,String gender) throws Exception;
 }
