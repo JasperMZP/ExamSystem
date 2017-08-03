@@ -9,6 +9,8 @@ public class SelectionQuestion {
     private String answer;  //答案
     private String analysis;  //解析
 
+
+
     private String[] options;  //选择题选项
 
     public String getType() {
