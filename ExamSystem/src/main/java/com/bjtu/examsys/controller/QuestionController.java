@@ -3,7 +3,11 @@ package com.bjtu.examsys.controller;
 import com.bjtu.examsys.aspect.HttpAspect;
 import com.bjtu.examsys.domain.Question;
 import com.bjtu.examsys.domain.Result;
+import com.bjtu.examsys.domain.SelectionQuestion;
 import com.bjtu.examsys.service.QuestionService;
+import com.bjtu.examsys.utils.GsonUtil;
+import com.bjtu.examsys.utils.ResultUtil;
+import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +29,9 @@ public class QuestionController {
         return questionService.questionReturn(questionId);
     }
 
-//    @PutMapping(value = "/examsys/question/test")
-//    public  void test(@RequestParam("occupations") String[]  ocus){
-//        logger.info(ocus.toString());
-//    }
+    @PostMapping(value = "/examsys/question")
+    public Result addQuestion(@RequestBody String addQuestionJson){
+        return ResultUtil.success(GsonUtil.parseJsonWithGson(addQuestionJson,
+                SelectionQuestion.class));
+    }
 }
