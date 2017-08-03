@@ -24,11 +24,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    /*@RequestMapping("/examsys/hello")
-    public String test(){
-        return "Hello World!";
+    @PutMapping(value = "/examsys/hello")
+    public String test(@RequestParam("aaa") String aaa) {
+        return "Hello World! "+aaa;
     }
-
+/*
     @PostMapping("/examsys/pojo")
     public Result<User> test2(@Valid User user, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
