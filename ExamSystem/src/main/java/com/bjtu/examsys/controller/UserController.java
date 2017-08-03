@@ -24,10 +24,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PutMapping(value = "/examsys/hello")
+    /*@PutMapping(value = "/examsys/hello")
     public String test(@RequestParam("aaa") String aaa) {
         return "Hello World! "+aaa;
-    }
+    }*/
 /*
     @PostMapping("/examsys/pojo")
     public Result<User> test2(@Valid User user, BindingResult bindingResult){
@@ -55,8 +55,7 @@ public class UserController {
         return userService.userLogin(userId, password);
     }
 
-    @PostMapping(value = "/examsys/user/{userId}")
-    //@RequestMapping(value = "/examsys/user/{userId}", method = RequestMethod.PUT)
+    @PutMapping(value = "/examsys/user/{userId}")
     public Result userUpdate(@PathVariable("userId") String userId,@RequestParam("password")String password,@RequestParam("occupation")
             String occupation,@RequestParam("gender")String gender)throws Exception{
         logger.info(userId);
