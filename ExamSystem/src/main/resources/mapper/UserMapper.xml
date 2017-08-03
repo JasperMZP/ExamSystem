@@ -27,4 +27,17 @@
         VALUES
         ('${user.userId}', '${user.password}', '${user.occupation}', '${user.gender}')
     </insert>
+
+    <update id="updateUser" parameterType="com.bjtu.examsys.domain.User">
+        UPDATE user
+        <set>
+            password = #{user.password},
+            occupation = #{user.occupation},
+            gender = #{user.gender},
+
+        </set>
+        <where>
+            userId = #{user.userId}
+        </where>
+    </update>
 </mapper>

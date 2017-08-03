@@ -55,4 +55,11 @@ public class UserController {
         return userService.userLogin(userId, password);
     }
 
+    @PostMapping(value = "/examsys/user/{userId}")
+    //@RequestMapping(value = "/examsys/user/{userId}", method = RequestMethod.PUT)
+    public Result userUpdate(@PathVariable("userId") String userId,@RequestParam("password")String password,@RequestParam("occupation")
+            String occupation,@RequestParam("gender")String gender)throws Exception{
+        logger.info(userId);
+        return userService.userUpdate(userId,password,occupation,gender);
+    }
 }

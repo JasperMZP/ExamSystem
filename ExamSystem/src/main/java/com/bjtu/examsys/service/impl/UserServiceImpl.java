@@ -55,4 +55,18 @@ public class UserServiceImpl implements UserService {
         }
         throw new SignException(2, "用户名或密码不对");
     }
+
+    @Override
+    public Result userUpdate(String userId,String password,String occupation,String gender) throws Exception{
+        logger.info(userId);
+        User nowUser = userDao.findUserByUserId(userId);
+        if(nowUser != null){
+            nowUser.setPassword(password);
+            nowUser.setOccupation(occupation);
+            nowUser.setGender(gender);
+            if(userDao.updateUser(nowUser) == 1)
+                return ResultUtil.success();
+        }
+        throw new SignException(2, "用户名错误");
+    }
 }

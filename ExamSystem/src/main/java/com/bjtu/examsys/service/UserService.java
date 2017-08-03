@@ -13,4 +13,6 @@ public interface UserService {
     Result userRegister(User user, BindingResult bindingResult) throws Exception;
 
     Result<ReturnUser> userLogin(String userId, String password) throws Exception;
+
+    Result userUpdate(String userId,String password,String occupation,String gender) throws Exception;
 }

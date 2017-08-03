@@ -13,4 +13,6 @@ public interface UserDao {
     User findUserByUserId(@Param("userId") String userId);
 
     Integer insertUser(@Param("user") User user);
+
+    Integer updateUser(@Param("user") User user);
 }
