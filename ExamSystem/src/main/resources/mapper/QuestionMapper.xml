@@ -3,6 +3,8 @@
 <mapper namespace="com.bjtu.examsys.dao.QuestionDao">
     <resultMap id="BaseResultMap" type="com.bjtu.examsys.domain.Question">
         <result column="questionId" property="questionId"/>
+        <result column="time" property="time"/>
+        <result column="score" property="score"/>
         <result column="occupation" property="occupation"/>
         <result column="questionType" property="questionType"/>
         <result column="difficulty" property="difficulty"/>
@@ -22,6 +24,6 @@
         question
         (time, score, occupation, questionType,difficulty,questionContent,questionAnswer,questionAnalysis)
         VALUES
-        ('${user.userId}', '${user.password}', '${user.occupation}', '${user.gender}')
+        (#{question.time}, #{question.score}, #{question.occupation}, #{question.questionType},#{question.difficulty},#{question.questionContent},#{question.questionAnswer},#{question.questionAnalysis})
     </insert>
 </mapper>

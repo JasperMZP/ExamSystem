@@ -29,6 +29,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public Result addQuestions(String type,String time,String occupation,String score,String difficulty,String content,String answer,String analysis)throws  Exception{
         Question question = new Question();
+        //question.setQuestionId(0);
         question.setQuestionType(type);
         question.setTime(time);
         question.setOccupation(occupation);
