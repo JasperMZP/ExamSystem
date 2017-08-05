@@ -3,7 +3,6 @@ package com.bjtu.examsys.service.impl;
 import com.bjtu.examsys.dao.AdminDao;
 import com.bjtu.examsys.domain.Admin;
 import com.bjtu.examsys.domain.Result;
-import com.bjtu.examsys.domain.User;
 import com.bjtu.examsys.exception.SignException;
 import com.bjtu.examsys.service.AdminService;
 import com.bjtu.examsys.utils.ResultUtil;
