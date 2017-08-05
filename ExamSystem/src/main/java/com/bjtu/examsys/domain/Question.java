@@ -5,9 +5,11 @@ package com.bjtu.examsys.domain;
  */
 public class Question {
     private int questionId;
-    private String occupation;
+    private String time;
+    private String score;
     private String questionType;
-    private int difficulty;
+    private String occupation;
+    private String difficulty;
     private String questionContent;
     private String questionAnswer;
     private String questionAnalysis;
@@ -25,9 +27,17 @@ public class Question {
 
     public void setQuestionType(String questionType) {this.questionType = questionType;}
 
-    public int getDifficulty() {return difficulty;}
+    public String getTime() {return time;}
 
-    public void setDifficulty(int difficulty) {this.difficulty = difficulty;}
+    public void setTime(String time) {this.time = time;}
+
+    public String getScore() {return score;}
+
+    public void setScore(String score) {this.score = score;}
+
+    public String getDifficulty() {return difficulty;}
+
+    public void setDifficulty(String difficulty) {this.difficulty = difficulty;}
 
     public String getQuestionContent() {return questionContent;}
 

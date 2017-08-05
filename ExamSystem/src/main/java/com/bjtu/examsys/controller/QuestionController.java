@@ -34,4 +34,9 @@ public class QuestionController {
         return ResultUtil.success(GsonUtil.parseJsonWithGson(addQuestionJson,
                 SelectionQuestion.class));
     }
+
+    @PostMapping(value = "/examsys/question/{type}")
+    public Result addQuestions(@PathVariable("type") String type,@RequestParam("time") String time,@RequestParam("occupation") String occupation,@RequestParam("difficulty") String difficulty,@RequestParam("score") String score,@RequestParam("content") String content,@RequestParam("answer") String answer,@RequestParam("analysis") String analysis) throws Exception{
+        return questionService.addQuestions(type,time,occupation,score,difficulty,content,answer,analysis);
+    }
 }

@@ -61,4 +61,7 @@ public class UserController {
         logger.info(userId);
         return userService.userUpdate(userId,occupation,gender);
     }
+
+
+
 }

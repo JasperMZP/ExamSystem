@@ -17,4 +17,11 @@
         WHERE questionId = #{questionId}
     </select>
 
+    <insert id="addQuestions" parameterType="com.bjtu.examsys.domain.Question">
+        INSERT INTO
+        question
+        (time, score, occupation, questionType,difficulty,questionContent,questionAnswer,questionAnalysis)
+        VALUES
+        ('${user.userId}', '${user.password}', '${user.occupation}', '${user.gender}')
+    </insert>
 </mapper>

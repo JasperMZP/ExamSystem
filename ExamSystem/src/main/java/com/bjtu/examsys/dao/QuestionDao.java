@@ -7,4 +7,5 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface QuestionDao {
     Question findQuestionByQuestionId(@Param("questionId") Integer questionId);
+    Integer addQuestions(@Param("question") Question question);
 }

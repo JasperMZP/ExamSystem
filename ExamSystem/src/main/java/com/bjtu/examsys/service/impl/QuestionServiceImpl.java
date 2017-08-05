@@ -26,4 +26,19 @@ public class QuestionServiceImpl implements QuestionService {
         throw new SignException(3, "gg");
     }
 
+    @Override
+    public Result addQuestions(String type,String time,String occupation,String score,String difficulty,String content,String answer,String analysis)throws  Exception{
+        Question question = new Question();
+        question.setQuestionType(type);
+        question.setTime(time);
+        question.setOccupation(occupation);
+        question.setScore(score);
+        question.setDifficulty(difficulty);
+        question.setQuestionContent(content);
+        question.setQuestionAnswer(answer);
+        question.setQuestionAnalysis(analysis);
+        if(questionDao.addQuestions(question) == 1)
+            return ResultUtil.success();
+        throw new SignException(1, "添加错误");
+    }
 }
