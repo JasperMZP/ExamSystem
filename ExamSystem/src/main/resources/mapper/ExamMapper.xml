@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjtu.examsys.dao.ExamDao">
+    <resultMap id="BaseResultMap" type="com.bjtu.examsys.domain.Exam">
+        <result column="testPaperId" property="testPaperId"/>
+        <result column="userId" property="questionId"/>
+        <result column="occupation" property="occupation"/>
+        <result column="testScore" property="testScore"/>
+        <result column="time" property="time"/>
+        <result column="type" property="type"/>
+        <result column="score" property="score"/>
+        <result column="difficulty" property="difficulty"/>
+        <result column="question" property="question"/>
+        <result column="option" property="option"/>
+        <result column="answer" property="answer"/>
+        <result column="examAnswer" property="examAnswer"/>
+        <result column="analysis" property="analysis"/>
+        <result column="result" property="result"/>
+    </resultMap>
+
+
+
+    <insert id="addExam" parameterType="com.bjtu.examsys.domain.Exam">
+        INSERT INTO
+        exam
+        (userId, occupation, time, testScore,type,score,difficulty,content,answer,examAnswer,analysis,result)
+        VALUES
+        (#{exam.userId}, #{exam.occupation}, #{exam.time}, #{exam.testScore},#{exam.type},#{exam.score},#{exam.difficulty},#{exam.content},#{exam.answer},#{exam.examAnswer},#{exam.analysis},#{exam.result})
+    </insert>
+
+
+</mapper>
