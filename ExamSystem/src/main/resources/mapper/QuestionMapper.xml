@@ -48,6 +48,8 @@
          question
          WHERE
          questionType=#{questionType}
+         AND
+         occupation=#{occupation}
          ORDER BY RAND() LIMIT #{num}
     </select>
 </mapper>

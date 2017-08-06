@@ -2,7 +2,7 @@ package com.bjtu.examsys.domain;
 
 import java.util.List;
 
-public class Exam {
+public class ExamPaper {
     private ExamContext context;
     private List<Question> singleChoice;
     private List<Question> multipleChoice;

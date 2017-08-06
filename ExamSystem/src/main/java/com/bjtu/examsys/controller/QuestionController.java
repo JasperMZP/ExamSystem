@@ -1,22 +1,17 @@
 package com.bjtu.examsys.controller;
 
 import com.bjtu.examsys.aspect.HttpAspect;
-import com.bjtu.examsys.domain.Exam;
+import com.bjtu.examsys.domain.ExamPaper;
 import com.bjtu.examsys.domain.Question;
 import com.bjtu.examsys.domain.Result;
 import com.bjtu.examsys.domain.SelectionQuestion;
 import com.bjtu.examsys.service.QuestionService;
 import com.bjtu.examsys.utils.GsonUtil;
 import com.bjtu.examsys.utils.ResultUtil;
-import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Wjl on 2017/7/30.
@@ -50,7 +45,8 @@ public class QuestionController {
     }
 
     @GetMapping(value = "/examsys/exam")
-    public Result<Exam> getExamQuestions(@RequestParam("occupation") String occupation, @RequestParam("time") String time){
+    public Result<ExamPaper> getExamQuestions(@RequestParam("occupation") String occupation, @RequestParam("time") String time){
+        logger.info("occupation:   "+ occupation);
         return questionService.getExamQuestions(occupation,time);
     }
 }
