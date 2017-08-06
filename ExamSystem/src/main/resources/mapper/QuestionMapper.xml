@@ -40,4 +40,16 @@
             #{id}
         </foreach>
     </delete>
+
+    <select id="getQuestionsWithTypeAndNum" resultType="com.bjtu.examsys.domain.Question">
+        SELECT
+         *
+        FROM
+         question
+         WHERE
+         questionType=#{questionType}
+         AND
+         occupation=#{occupation}
+         ORDER BY RAND() LIMIT #{num}
+    </select>
 </mapper>

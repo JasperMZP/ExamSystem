@@ -2,6 +2,8 @@ package com.bjtu.examsys.service.impl;
 
 import com.bjtu.examsys.aspect.HttpAspect;
 import com.bjtu.examsys.dao.QuestionDao;
+import com.bjtu.examsys.domain.ExamPaper;
+import com.bjtu.examsys.domain.ExamContext;
 import com.bjtu.examsys.domain.Question;
 import com.bjtu.examsys.domain.Result;
 import com.bjtu.examsys.exception.SignException;
@@ -41,11 +43,11 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public Result deleteQuestionByIds(String questionIds) {
         String[] ids = questionIds.split("\\|");
-        List<Integer> qIds=new ArrayList<Integer>();
+        List<Integer> qIds = new ArrayList<Integer>();
         for (String id : ids) {
             qIds.add(Integer.parseInt(id));
         }
-        if(questionDao.deleteQuestionByIds(qIds)==qIds.size()){
+        if (questionDao.deleteQuestionByIds(qIds) == qIds.size()) {
             return ResultUtil.success();
         }
         throw new SignException(4, "删除失败");
@@ -66,5 +68,48 @@ public class QuestionServiceImpl implements QuestionService {
         if (questionDao.addQuestions(question) == 1)
             return ResultUtil.success();
         throw new SignException(1, "添加错误");
+    }
+
+    @Override
+    public Result<ExamPaper> getExamQuestions(String occupation, String time) {
+        ExamPaper exam = null;
+        switch (time) {
+            case "1":
+                exam=getQuestions(ExamType.SHOTEXAM,occupation);
+                break;
+            case "1.5":
+                exam= getQuestions(ExamType.MIDDLEEXAM,occupation);
+                break;
+            case "2":
+                exam= getQuestions(ExamType.LONGEXAM,occupation);
+                break;
+            default:
+                throw new SignException(5, "获取试卷错误");
+        }
+        return ResultUtil.success(exam);
+    }
+
+    public ExamPaper getQuestions(ExamType examType,String occupation) {
+
+        ExamContext examContext = new ExamContext();
+        examContext.setQuestionNum(examType.getTotalNum());
+        examContext.setSingleChoice(examType.getSingleChoiceNum());
+        examContext.setMultipleChoice(examType.getMultipleChoiceNum());
+        examContext.setJudge(examType.getJudgeNum());
+        examContext.setCompletion(examType.getCompletionNum());
+        examContext.setSimpleQuestion(examType.getSimpleQuestionNum());
+        examContext.setCode(examType.getCodeNum());
+
+        ExamPaper exam = new ExamPaper();
+        exam.setContext(examContext);
+
+        exam.setSingleChoice(questionDao.getQuestionsWithTypeAndNum("singleChoice", examContext.getSingleChoice(),occupation));
+        exam.setMultipleChoice(questionDao.getQuestionsWithTypeAndNum("multipleChoice", examContext.getMultipleChoice(),occupation));
+        exam.setJudge(questionDao.getQuestionsWithTypeAndNum("judge", examContext.getJudge(),occupation));
+        exam.setCompletion(questionDao.getQuestionsWithTypeAndNum("completion", examContext.getCompletion(),occupation));
+        exam.setSimpleQuestion(questionDao.getQuestionsWithTypeAndNum("simpleQuestion", examContext.getSimpleQuestion(),occupation));
+        exam.setCode(questionDao.getQuestionsWithTypeAndNum("code", examContext.getCode(),occupation));
+
+        return exam;
     }
 }
