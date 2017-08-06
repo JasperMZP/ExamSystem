@@ -17,4 +17,7 @@ public interface QuestionDao {
     List<Question> getAllQuestions();
 
     Integer deleteQuestionByIds(@Param("ids") List<Integer> ids);
+
+    List<Question> getQuestionsWithTypeAndNum(@Param("questionType") String questionType,
+                                              @Param("num") Integer num);
 }

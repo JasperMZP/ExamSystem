@@ -1,6 +1,7 @@
 package com.bjtu.examsys.controller;
 
 import com.bjtu.examsys.aspect.HttpAspect;
+import com.bjtu.examsys.domain.Exam;
 import com.bjtu.examsys.domain.Question;
 import com.bjtu.examsys.domain.Result;
 import com.bjtu.examsys.domain.SelectionQuestion;
@@ -46,5 +47,10 @@ public class QuestionController {
     @PostMapping(value = "/examsys/question/{type}")
     public Result addQuestions(@PathVariable("type") String type, @RequestParam("time") String time, @RequestParam("occupation") String occupation, @RequestParam("difficulty") String difficulty, @RequestParam("score") String score, @RequestParam("content") String content, @RequestParam("answer") String answer, @RequestParam("analysis") String analysis) throws Exception {
         return questionService.addQuestions(type, time, occupation, score, difficulty, content, answer, analysis);
+    }
+
+    @GetMapping(value = "/examsys/exam")
+    public Result<Exam> getExamQuestions(@RequestParam("occupation") String occupation, @RequestParam("time") String time){
+        return questionService.getExamQuestions(occupation,time);
     }
 }
