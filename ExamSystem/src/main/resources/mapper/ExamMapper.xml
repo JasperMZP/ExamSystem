@@ -10,8 +10,7 @@
         <result column="type" property="type"/>
         <result column="score" property="score"/>
         <result column="difficulty" property="difficulty"/>
-        <result column="question" property="question"/>
-        <result column="option" property="option"/>
+        <result column="content" property="content"/>
         <result column="answer" property="answer"/>
         <result column="examAnswer" property="examAnswer"/>
         <result column="analysis" property="analysis"/>
@@ -28,5 +27,10 @@
         (#{exam.userId}, #{exam.occupation}, #{exam.time}, #{exam.testScore},#{exam.type},#{exam.score},#{exam.difficulty},#{exam.content},#{exam.answer},#{exam.examAnswer},#{exam.analysis},#{exam.result})
     </insert>
 
+    <select id="getTestPaper" parameterType="java.lang.String" resultType="com.bjtu.examsys.domain.Exam">
+        SELECT *
+        FROM exam
+        WHERE testPaperId = #{testPaperId}
+    </select>
 
 </mapper>

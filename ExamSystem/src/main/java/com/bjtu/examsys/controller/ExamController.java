@@ -24,4 +24,9 @@ public class ExamController {
     public Result addExam(@RequestParam("userId") String userId,@RequestParam("occupation") String occupation,@RequestParam("testScore") String testScore,@RequestParam("time") String time,@RequestParam("type") String type,@RequestParam("score") String score,@RequestParam("difficulty") String difficulty,@RequestParam("content") String content,@RequestParam("answer") String answer,@RequestParam("examAnswer") String examAnswer,@RequestParam("analysis") String analysis,@RequestParam("result") String result) throws  Exception{
         return examService.addExam(userId,occupation,testScore,time,type,score,difficulty,content,answer,examAnswer,analysis,result);
     }
+
+    @GetMapping(value = "/examsys/exam/{testPaperId}")
+    public Result<Exam> getTestPaper(@PathVariable("testPaperId") String testPaperId) throws Exception{
+        return examService.getTestPaper(testPaperId);
+    }
 }

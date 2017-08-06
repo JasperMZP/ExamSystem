@@ -47,4 +47,12 @@ public class ExamServiceImpl implements ExamService{
         throw new SignException(1, "添加错误");
 
     }
+
+    @Override
+    public Result<Exam> getTestPaper(String testPaperId) throws Exception{
+        Exam exam = examDao.getTestPaper(testPaperId);
+        if(exam != null)
+            return ResultUtil.success(exam);
+        throw new SignException(1, "查询错误");
+    }
 }
