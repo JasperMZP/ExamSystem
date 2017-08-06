@@ -26,4 +26,18 @@
         VALUES
         (#{question.time}, #{question.score}, #{question.occupation}, #{question.questionType},#{question.difficulty},#{question.questionContent},#{question.questionAnswer},#{question.questionAnalysis})
     </insert>
+
+    <select id="getAllQuestions" resultType="com.bjtu.examsys.domain.Question">
+        SELECT *
+        FROM question
+    </select>
+
+    <delete id="deleteQuestionByIds" parameterType="java.lang.Integer">
+        DELETE FROM
+        question
+        WHERE questionId IN
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

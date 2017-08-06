@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Wjl on 2017/7/30.
  */
@@ -25,18 +28,23 @@ public class QuestionController {
     private QuestionService questionService;
 
     @GetMapping(value = "/examsys/question")
-    public Result<Question> questionReturn(@RequestParam("questionId") Integer questionId) throws Exception {
-        return questionService.questionReturn(questionId);
+    public Result<Question> getAllQuestion() throws Exception {
+        return questionService.getAllQuestions();
+    }
+
+    @DeleteMapping(value = "/examsys/question/{questionIds}")
+    public Result deleteQuestion(@PathVariable("questionIds") String questionIds) {
+        return  questionService.deleteQuestionByIds(questionIds);
     }
 
     @PostMapping(value = "/examsys/question")
-    public Result addQuestion(@RequestBody String addQuestionJson){
+    public Result addQuestion(@RequestBody String addQuestionJson) {
         return ResultUtil.success(GsonUtil.parseJsonWithGson(addQuestionJson,
                 SelectionQuestion.class));
     }
 
     @PostMapping(value = "/examsys/question/{type}")
-    public Result addQuestions(@PathVariable("type") String type,@RequestParam("time") String time,@RequestParam("occupation") String occupation,@RequestParam("difficulty") String difficulty,@RequestParam("score") String score,@RequestParam("content") String content,@RequestParam("answer") String answer,@RequestParam("analysis") String analysis) throws Exception{
-        return questionService.addQuestions(type,time,occupation,score,difficulty,content,answer,analysis);
+    public Result addQuestions(@PathVariable("type") String type, @RequestParam("time") String time, @RequestParam("occupation") String occupation, @RequestParam("difficulty") String difficulty, @RequestParam("score") String score, @RequestParam("content") String content, @RequestParam("answer") String answer, @RequestParam("analysis") String analysis) throws Exception {
+        return questionService.addQuestions(type, time, occupation, score, difficulty, content, answer, analysis);
     }
 }
